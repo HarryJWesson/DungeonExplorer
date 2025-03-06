@@ -9,7 +9,6 @@ namespace DungeonExplorer
         
         // need a method to get the description of the room
         
-        // error checking with the inputting of the name or trying to pick an item that isnt there
         public string Name { get; private set; }
         public int Health { get; private set; }
         private List<string> inventory = new List<string>();

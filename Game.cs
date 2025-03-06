@@ -33,19 +33,35 @@ namespace DungeonExplorer
 
         public void turn()
         {
+            Console.WriteLine("Please input the relative number for your choice:  ");
+            Console.WriteLine("1: View the room");
+            Console.WriteLine("2: Check player stats");
+            Console.WriteLine("3: Pick up the item in the room (If there is one)");
+            Console.WriteLine("---------------------------");
             try
             {
-                Console.WriteLine("Please input the relative number for your choice:  ");
-                Console.WriteLine("1: View the room");
-                Console.WriteLine("2: Check player stats");
-                Console.WriteLine("3: Pick up the item in the room (If there is one)");
-                Console.WriteLine("---------------------------");
                 int choice = int.Parse(Console.ReadLine());
+                switch (choice)
+                {
+                    case 1:
+                        //view the room
+                        break;
+                    case 2:
+                        // check player stats
+                        break;
+                    case 3:
+                        // pick up an item
+                        break;
+                    default:
+                        Console.WriteLine("Invalid Choice!");
+                        break;
+                }
             }
             catch
             {
                 Console.WriteLine("Please input a valid choice!");
             }
+            
         }
     }
 }
