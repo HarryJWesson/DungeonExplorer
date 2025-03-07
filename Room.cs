@@ -8,12 +8,12 @@ namespace DungeonExplorer
         // the room should have a description and an event or item
         // getting / setting is necessary
         private string _description;
-        private RoomEvent roomEvent;
+        private RoomEvent _roomEvent;
 
         public Room(string _description)
         {
             Description = _description;
-            roomEvent = new RoomEvent();
+            RoomEvent = _roomEvent;
         }
 
         public string Description
@@ -22,6 +22,14 @@ namespace DungeonExplorer
             set
             {
                 _description = value;
+            }
+        }
+        public RoomEvent RoomEvent
+        {
+            get { return _roomEvent; }
+            set
+            {
+                _roomEvent = value;
             }
         }
 

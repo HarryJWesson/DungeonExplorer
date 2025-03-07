@@ -44,13 +44,13 @@ namespace DungeonExplorer
                 switch (choice)
                 {
                     case 1:
-                        //view the room
+                        Console.WriteLine(currentRoom.GetDescription());
                         break;
                     case 2:
                         // check player stats
                         break;
                     case 3:
-                        // pick up an item
+                        player.PickUpItem(currentRoom);
                         break;
                     default:
                         Console.WriteLine("Invalid Choice!");

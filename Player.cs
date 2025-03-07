@@ -18,9 +18,12 @@ namespace DungeonExplorer
             Name = name;
             Health = health;
         }
-        public void PickUpItem(string item)
+        public void PickUpItem(Room room)
         {
-
+            if (room.RoomEvent.Item == true)
+            {
+                this.inventory.Add(room.RoomEvent.Name);
+            }
         }
         public string InventoryContents()
         {
