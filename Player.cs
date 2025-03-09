@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace DungeonExplorer
 {
@@ -24,9 +25,14 @@ namespace DungeonExplorer
             {
                 this.inventory.Add(room.RoomEvent.Name);
             }
+            else
+            {
+                Console.WriteLine("No item to pick up!");
+            }
         }
         public string InventoryContents()
         {
+            Console.WriteLine($"{Name}'s health is {Health}.");
             return string.Join(", ", inventory);
         }
     }

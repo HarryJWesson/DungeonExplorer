@@ -47,7 +47,7 @@ namespace DungeonExplorer
                         Console.WriteLine(currentRoom.GetDescription());
                         break;
                     case 2:
-                        // check player stats
+                        Console.WriteLine(player.InventoryContents());
                         break;
                     case 3:
                         player.PickUpItem(currentRoom);

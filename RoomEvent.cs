@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace DungeonExplorer
 {
-    public class RoomEvent
+    public class Event
     {
         private bool _item;
         private string _name;
 
-        public RoomEvent()
+        public Event(bool _item)
         { 
             Item = _item;
             Name = _name;
@@ -23,13 +23,8 @@ namespace DungeonExplorer
         {
             get { return _item; }
             set
-            { 
-                if (value == false)
-                {
-                    var random = new Random();
-                    _item = random.Next(2) == 1;
-                }
-
+            {
+                _item = value;
             }
         }
 

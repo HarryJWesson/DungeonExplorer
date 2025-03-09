@@ -1,14 +1,13 @@
-﻿using System.Diagnostics.Tracing;
+﻿using System;
+using System.Diagnostics.Tracing;
 using System.Xml.Linq;
 
 namespace DungeonExplorer
 {
     public class Room
     {
-        // the room should have a description and an event or item
-        // getting / setting is necessary
         private string _description;
-        private RoomEvent _roomEvent;
+        private Event _roomEvent = new Event(true);
 
         public Room(string _description)
         {
@@ -24,7 +23,8 @@ namespace DungeonExplorer
                 _description = value;
             }
         }
-        public RoomEvent RoomEvent
+
+        public Event RoomEvent
         {
             get { return _roomEvent; }
             set
@@ -35,6 +35,11 @@ namespace DungeonExplorer
 
         public string GetDescription()
         {
+            if (RoomEvent.Item == true) 
+            {
+                Console.WriteLine($"There is an item in the room! It is a {RoomEvent.Name}");
+            }
+
             return Description;
         }
 
