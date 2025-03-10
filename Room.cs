@@ -7,14 +7,16 @@ namespace DungeonExplorer
     public class Room
     {
         private string _description;
-        private Event _roomEvent = new Event(true);
+        private Event _item = new Event(true);
+        private Event _monster = new Event(false);
         private int _roomIndex;
         private int _nextRoom;
 
         public Room(string _description, int _roomIndex, int _nextRoom)
         {
             Description = _description;
-            RoomEvent = _roomEvent;
+            Item = _item;
+            Monster = _monster;
             RoomIndex = _roomIndex;
             NextRoom = _nextRoom;
         }
@@ -46,22 +48,55 @@ namespace DungeonExplorer
             }
         }
 
-        public Event RoomEvent
+        public Event Item
         {
-            get { return _roomEvent; }
+            get { return _item; }
             set
             {
-                _roomEvent = value;
+                _item = value;
+            }
+        }
+
+        public Event Monster
+        {
+            get 
+            {
+                if (this.RoomIndex / 2 == 0)
+                {
+                    return new Event(true);
+                }
+                else
+                {
+                    return new Event(false);
+                }
+            }
+            set
+            {
+                if (this.RoomIndex / 2 == 0)
+                {
+                    _monster = new Event(true);
+                }
+                else
+                {
+                    _monster = new Event(false);
+                }
             }
         }
 
         public string GetDescription()
         {
-            if (RoomEvent.Item == true) 
+            if (Item.Item == true) 
             {
-                Console.WriteLine($"There is an item in the room! It is a {RoomEvent.Name}");
+                Console.WriteLine($"There is an item in the room! It is a {Item.Name}");
             }
-
+            if (Monster.Item == false)
+            {
+                Console.WriteLine($"There is a monster in the room! It is a {Monster.Name}");
+            }
+            else
+            {
+                Console.WriteLine($"There is an additional item! It is a {Monster.Name}");
+            }
             return Description;
         }
 

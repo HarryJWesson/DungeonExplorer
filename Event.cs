@@ -39,7 +39,7 @@ namespace DungeonExplorer
                 }
                 else 
                 { 
-                    _name = "No Item";
+                    _name = "Monster";
                 }
             }
         }

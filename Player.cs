@@ -22,9 +22,9 @@ namespace DungeonExplorer
 
         public void PickUpItem(Room room)
         {
-            if (room.RoomEvent.Item == true)
+            if (room.Item.Item == true)
             {
-                this.inventory.Add(room.RoomEvent.Name);
+                this.inventory.Add(room.Item.Name);
             }
             else
             {
