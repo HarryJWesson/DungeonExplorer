@@ -19,6 +19,7 @@ namespace DungeonExplorer
             Name = name;
             Health = health;
         }
+
         public void PickUpItem(Room room)
         {
             if (room.RoomEvent.Item == true)
@@ -30,6 +31,12 @@ namespace DungeonExplorer
                 Console.WriteLine("No item to pick up!");
             }
         }
+
+        public int MoveToNextRoom(Room Room)
+        {
+            return Room.NextRoom;
+        }
+
         public string InventoryContents()
         {
             Console.WriteLine($"{Name}'s health is {Health}.");

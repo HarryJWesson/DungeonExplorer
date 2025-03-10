@@ -8,11 +8,15 @@ namespace DungeonExplorer
     {
         private string _description;
         private Event _roomEvent = new Event(true);
+        private int _roomIndex;
+        private int _nextRoom;
 
-        public Room(string _description)
+        public Room(string _description, int _roomIndex, int _nextRoom)
         {
             Description = _description;
             RoomEvent = _roomEvent;
+            RoomIndex = _roomIndex;
+            NextRoom = _nextRoom;
         }
 
         public string Description
@@ -21,6 +25,24 @@ namespace DungeonExplorer
             set
             {
                 _description = value;
+            }
+        }
+
+        public int RoomIndex
+        {
+            get { return _roomIndex; }
+            set
+            {
+                _roomIndex = value;
+            }
+        }
+
+        public int NextRoom
+        {
+            get { return _nextRoom; }
+            set
+            {
+                _nextRoom = value;
             }
         }
 
