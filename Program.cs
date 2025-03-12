@@ -8,6 +8,10 @@ namespace DungeonExplorer
 {
     internal class Program
     {
+        //
+        // Class for the main method
+        //
+
         static void Main(string[] args)
         {
             try

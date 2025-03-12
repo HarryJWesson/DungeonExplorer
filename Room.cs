@@ -6,12 +6,17 @@ namespace DungeonExplorer
 {
     public class Room
     {
+        //
+        // Class to represent a room and its properties
+        //
+
         private string _description;
         private Event _item;
         private Event _monster;
         private int _roomIndex;
         private int _nextRoom;
 
+        // Constructor that generates items and monsters
         public Room(string _description, int _roomIndex, int _nextRoom)
         {
             Description = _description;
@@ -21,6 +26,7 @@ namespace DungeonExplorer
             NextRoom = _nextRoom;
         }
 
+        // getter setter for description of the room
         public string Description
         {
             get { return _description; }
@@ -30,6 +36,7 @@ namespace DungeonExplorer
             }
         }
 
+        // getter setter for the index of the room
         public int RoomIndex
         {
             get { return _roomIndex; }
@@ -39,6 +46,7 @@ namespace DungeonExplorer
             }
         }
 
+        // getter setter for the index of the next room a player can move to
         public int NextRoom
         {
             get { return _nextRoom; }
@@ -48,6 +56,7 @@ namespace DungeonExplorer
             }
         }
 
+        // getter setter for generating the item in each room
         public Event Item
         {
             get { return _item; }
@@ -57,6 +66,7 @@ namespace DungeonExplorer
             }
         }
 
+        // getter setter for generating a monster in the 3 room
         public Event Monster
         {
             get 
@@ -65,6 +75,7 @@ namespace DungeonExplorer
             }
             set
             {
+                // the first room is index 0 so room index 2 is room 3
                 if (this.RoomIndex / 2 == 0)
                 {
                     _monster = new Event(true);
@@ -76,6 +87,7 @@ namespace DungeonExplorer
             }
         }
 
+        // Method to print all the items in the room and if theres a monster in the room
         public string GetDescription()
         {
             Console.WriteLine();

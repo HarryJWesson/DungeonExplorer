@@ -12,11 +12,16 @@ namespace DungeonExplorer
 {
     public class Event
     {
+        //
+        // Class that populates rooms and represents items or monsters
+        //
+
         private bool _item;
         private string _name;
         private bool _present;
 
         public Event(bool _item)
+        // constructor for the class
         { 
             Item = _item;
             Name = _name;
@@ -24,6 +29,7 @@ namespace DungeonExplorer
         }
 
         public bool Item
+        // getter setter for a bool value that suggests if an event is an item or not
         {
             get { return _item; }
             set
@@ -33,6 +39,7 @@ namespace DungeonExplorer
         }
 
         public string Name
+        // getter setter for the name of the event
         {
             get { return _name; }
             set
@@ -49,6 +56,7 @@ namespace DungeonExplorer
         }
 
         public bool Present 
+        // getter setter for whether the event is present in the room
         { 
             get { return _present; }
             set 
