@@ -10,6 +10,7 @@ namespace DungeonExplorer
     {
         static void Main(string[] args)
         {
+            Testing.tests();
             Game game = new Game();
             game.Start();
             Console.WriteLine("Press any key to exit...");
