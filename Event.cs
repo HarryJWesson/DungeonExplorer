@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Text;
@@ -12,11 +14,13 @@ namespace DungeonExplorer
     {
         private bool _item;
         private string _name;
+        private bool _present;
 
         public Event(bool _item)
         { 
             Item = _item;
             Name = _name;
+            Present = true;
         }
 
         public bool Item
@@ -42,6 +46,15 @@ namespace DungeonExplorer
                     _name = "Monster";
                 }
             }
+        }
+
+        public bool Present 
+        { 
+            get { return _present; }
+            set 
+            {
+                _present = value;
+            } 
         }
     }
 

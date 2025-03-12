@@ -18,7 +18,7 @@ namespace DungeonExplorer
             Console.WriteLine("Please input the player's name: ");
             string name = Console.ReadLine();
             player = new Player(name, 100);
-
+            Console.WriteLine();
         }
         public void Start()
         {
@@ -41,10 +41,12 @@ namespace DungeonExplorer
             try
             {
                 int choice = int.Parse(Console.ReadLine());
+                Console.WriteLine();
                 switch (choice)
                 {
                     case 1:
                         Console.WriteLine(currentRoom.GetDescription());
+                        Console.WriteLine();
                         break;
                     case 2:
                         Console.WriteLine(player.InventoryContents());
@@ -58,7 +60,9 @@ namespace DungeonExplorer
                         { currentRoom = new Room($"Generated room number {nextIndex}", nextIndex, nextIndex + 1); }
                         else
                         {
+                            Console.WriteLine();
                             Console.WriteLine("End of the Line!");
+                            Console.WriteLine();
                         }
                         break;
                     default:
@@ -66,11 +70,14 @@ namespace DungeonExplorer
                         break;
                 }
             }
-            catch
+            catch (FormatException)
             {
                 Console.WriteLine("Please input a valid choice!");
             }
-            
+            catch (Exception)
+            {
+                Console.WriteLine("Generic ERROR!");
+            }
         }
     }
 }

@@ -7,16 +7,16 @@ namespace DungeonExplorer
     public class Room
     {
         private string _description;
-        private Event _item = new Event(true);
-        private Event _monster = new Event(false);
+        private Event _item;
+        private Event _monster;
         private int _roomIndex;
         private int _nextRoom;
 
         public Room(string _description, int _roomIndex, int _nextRoom)
         {
             Description = _description;
-            Item = _item;
-            Monster = _monster;
+            Item = new Event(true);
+            Monster = new Event(false);
             RoomIndex = _roomIndex;
             NextRoom = _nextRoom;
         }
@@ -61,14 +61,7 @@ namespace DungeonExplorer
         {
             get 
             {
-                if (this.RoomIndex / 2 == 0)
-                {
-                    return new Event(true);
-                }
-                else
-                {
-                    return new Event(false);
-                }
+                return _monster;
             }
             set
             {
@@ -85,7 +78,8 @@ namespace DungeonExplorer
 
         public string GetDescription()
         {
-            if (Item.Item == true) 
+            Console.WriteLine();
+            if ((Item.Item == true) & (Item.Present)) 
             {
                 Console.WriteLine($"There is an item in the room! It is a {Item.Name}");
             }
@@ -93,10 +87,11 @@ namespace DungeonExplorer
             {
                 Console.WriteLine($"There is a monster in the room! It is a {Monster.Name}");
             }
-            else
+            if ((Monster.Item == true) & (Monster.Present))
             {
                 Console.WriteLine($"There is an additional item! It is a {Monster.Name}");
             }
+            Console.WriteLine();
             return Description;
         }
 

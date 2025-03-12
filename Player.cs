@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 
 namespace DungeonExplorer
 {
@@ -22,13 +23,21 @@ namespace DungeonExplorer
 
         public void PickUpItem(Room room)
         {
-            if (room.Item.Item == true)
+            if ((room.Item.Item == true) & (room.Item.Present == true))
             {
                 this.inventory.Add(room.Item.Name);
+                room.Item.Present = false;
+            }
+            else if ((room.Monster.Item == true) & (room.Monster.Present == true))
+            {
+                this.inventory.Add(room.Monster.Name);
+                room.Monster.Present = false;
             }
             else
             {
+                Console.WriteLine();
                 Console.WriteLine("No item to pick up!");
+                Console.WriteLine();
             }
         }
 
@@ -39,6 +48,7 @@ namespace DungeonExplorer
 
         public string InventoryContents()
         {
+            Console.WriteLine();
             Console.WriteLine($"{Name}'s health is {Health}.");
             return string.Join(", ", inventory);
         }
