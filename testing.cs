@@ -9,6 +9,10 @@ namespace DungeonExplorer
 {
     internal class Testing
     {
+        //
+        // Testing class with methods to call to test some methods
+        //
+
         public static void tests()
         {
             // test #1 see if room description is correct
