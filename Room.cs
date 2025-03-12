@@ -6,21 +6,27 @@ namespace DungeonExplorer
 {
     public class Room
     {
+        //
+        // Class to represent a room and its properties
+        //
+
         private string _description;
-        private Event _item = new Event(true);
-        private Event _monster = new Event(false);
+        private Event _item;
+        private Event _monster;
         private int _roomIndex;
         private int _nextRoom;
 
+        // Constructor that generates items and monsters
         public Room(string _description, int _roomIndex, int _nextRoom)
         {
             Description = _description;
-            Item = _item;
-            Monster = _monster;
+            Item = new Event(true);
+            Monster = new Event(false);
             RoomIndex = _roomIndex;
             NextRoom = _nextRoom;
         }
 
+        // getter setter for description of the room
         public string Description
         {
             get { return _description; }
@@ -30,6 +36,7 @@ namespace DungeonExplorer
             }
         }
 
+        // getter setter for the index of the room
         public int RoomIndex
         {
             get { return _roomIndex; }
@@ -39,6 +46,7 @@ namespace DungeonExplorer
             }
         }
 
+        // getter setter for the index of the next room a player can move to
         public int NextRoom
         {
             get { return _nextRoom; }
@@ -48,6 +56,7 @@ namespace DungeonExplorer
             }
         }
 
+        // getter setter for generating the item in each room
         public Event Item
         {
             get { return _item; }
@@ -57,21 +66,16 @@ namespace DungeonExplorer
             }
         }
 
+        // getter setter for generating a monster in the 3 room
         public Event Monster
         {
             get 
             {
-                if (this.RoomIndex / 2 == 0)
-                {
-                    return new Event(true);
-                }
-                else
-                {
-                    return new Event(false);
-                }
+                return _monster;
             }
             set
             {
+                // the first room is index 0 so room index 2 is room 3
                 if (this.RoomIndex / 2 == 0)
                 {
                     _monster = new Event(true);
@@ -83,9 +87,11 @@ namespace DungeonExplorer
             }
         }
 
+        // Method to print all the items in the room and if theres a monster in the room
         public string GetDescription()
         {
-            if (Item.Item == true) 
+            Console.WriteLine();
+            if ((Item.Item == true) & (Item.Present)) 
             {
                 Console.WriteLine($"There is an item in the room! It is a {Item.Name}");
             }
@@ -93,10 +99,11 @@ namespace DungeonExplorer
             {
                 Console.WriteLine($"There is a monster in the room! It is a {Monster.Name}");
             }
-            else
+            if ((Monster.Item == true) & (Monster.Present))
             {
                 Console.WriteLine($"There is an additional item! It is a {Monster.Name}");
             }
+            Console.WriteLine();
             return Description;
         }
 

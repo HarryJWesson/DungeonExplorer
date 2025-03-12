@@ -8,12 +8,26 @@ namespace DungeonExplorer
 {
     internal class Program
     {
+        //
+        // Class for the main method
+        //
+
         static void Main(string[] args)
         {
-            Game game = new Game();
-            game.Start();
-            Console.WriteLine("Press any key to exit...");
-            Console.ReadKey();
+            try
+            {
+                Game game = new Game();
+                game.Start();
+            }
+            catch
+            {
+                Console.WriteLine("UNEXPECTED ERROR!");
+            }
+            finally
+            {
+                Console.WriteLine("Press any key to exit...");
+                Console.ReadKey();
+            }
         }
     }
 }
