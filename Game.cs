@@ -4,6 +4,44 @@ using System.Xml.Serialization;
 
 namespace DungeonExplorer
 {
+    /// <summary>
+    /// 
+    /// Add new classes:
+    /// monster, item, inventory, gamemap
+    /// 
+    /// - monster: represents creatures in rooms
+    /// - Item: represents multiple types of items like weapons or potions
+    /// - Inventory: a collection to manage items
+    /// - GameMap: manages multiple interconnected rooms
+    /// 
+    /// Encap and abstract:
+    /// create hierarchies for creature, items
+    /// 
+    /// - creature: abstract class for player and monster inherit
+    /// - item: subclasses for weapons and potions
+    /// 
+    /// Interfaces:
+    /// implement some like IDamageable (Player, Monster) and ICollectable
+    /// 
+    /// LINQS and Lambda:
+    /// LINQ to filter inventory or find strongest monster
+    /// use lambda for sorting or filtering
+    /// 
+    /// Static and Dynamic Polymorphism:
+    /// implement polymorphic methods for monster attacks or items based off of what they are
+    /// 
+    /// Error Checking:
+    /// enhance error checking for invalid commands or interactions (trying to use a nonexistent item)
+    /// 
+    /// Game Expansion:
+    /// add the following features
+    /// 
+    /// - navigate through multiple rooms
+    /// - battle monsters with varying difficulty
+    /// - Manage an inventory
+    /// 
+    /// </summary>
+
     internal class Game
     {
         //
