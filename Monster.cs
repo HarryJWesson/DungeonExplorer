@@ -6,7 +6,15 @@ using System.Threading.Tasks;
 
 namespace DungeonExplorer
 {
-    internal class Monster
+    class Monster : Creature, IDamageable
     {
+        public Monster() { }
+
+        public override void Attack()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Damage() { }
     }
 }

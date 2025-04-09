@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace DungeonExplorer
 {
-    internal class Weapon
+    class Weapon : Item
     {
+
     }
 }

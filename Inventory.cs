@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace DungeonExplorer
 {
-    internal class Inventory
+    class Inventory
     {
+        public Inventory() { }
     }
 }

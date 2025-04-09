@@ -4,7 +4,7 @@ using System.Diagnostics.Eventing.Reader;
 
 namespace DungeonExplorer
 {
-    public class Player
+    class Player : Creature, IDamageable
     {
         //
         // Class that represents the player and contains methods for actions in the game
@@ -56,5 +56,12 @@ namespace DungeonExplorer
             Console.WriteLine($"{Name}'s health is {Health}.");
             return string.Join(", ", inventory);
         }
+
+        public override void Attack()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Damage() { }
     }
 }

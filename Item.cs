@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace DungeonExplorer
 {
-    internal class Item
+    class Item : ICollectable
     {
+        public void Collect() { }
     }
 }

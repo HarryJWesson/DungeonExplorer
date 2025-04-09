@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace DungeonExplorer
 {
-    internal interface IDamageable
+    interface IDamageable
     {
+        void Damage();
     }
 }

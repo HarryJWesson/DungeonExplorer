@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace DungeonExplorer
 {
-    internal abstract class Creature
+    abstract class Creature
     {
+        public abstract void Attack();
     }
 }
