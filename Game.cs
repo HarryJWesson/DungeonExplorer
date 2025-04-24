@@ -12,16 +12,6 @@ namespace DungeonExplorer
     /// - monster: represents creatures in rooms
     /// - Item: represents multiple types of items like weapons or potions
     /// - Inventory: a collection to manage items
-    /// - GameMap: manages multiple interconnected rooms
-    /// 
-    /// Encap and abstract:
-    /// create hierarchies for creature, items
-    /// 
-    /// - creature: abstract class for player and monster inherit
-    /// - item: subclasses for weapons and potions
-    /// 
-    /// Interfaces:
-    /// implement some like IDamageable (Player, Monster) and ICollectable
     /// 
     /// LINQS and Lambda:
     /// LINQ to filter inventory or find strongest monster
@@ -36,7 +26,6 @@ namespace DungeonExplorer
     /// Game Expansion:
     /// add the following features
     /// 
-    /// - navigate through multiple rooms
     /// - battle monsters with varying difficulty
     /// - Manage an inventory
     /// 
@@ -50,12 +39,13 @@ namespace DungeonExplorer
   
         private Player player;
         private Room currentRoom;
+        private GameMap map;
 
         // This constructor inits the player and room
         public Game()
         {
-            currentRoom = new Room("The first room", 0, 1);
-            
+            map = new GameMap();
+
             Console.WriteLine("Please input the player's name: ");
             string name = Console.ReadLine();
             player = new Player(name, 100);
@@ -96,7 +86,7 @@ namespace DungeonExplorer
                     case 1:
                         // Check the room description and see if there's items or a monster
 
-                        Console.WriteLine(currentRoom.GetDescription());
+                        Console.WriteLine(map.currentRoom.GetDescription());
                         Console.WriteLine();
                         break;
                     case 2:
@@ -107,14 +97,14 @@ namespace DungeonExplorer
                     case 3:
                         // Pick up an Item in the room
 
-                        player.PickUpItem(currentRoom);
+                        map.currentRoom.item.Collect(map.currentRoom);
                         break;
                     case 4:
                         // Move to the next room
 
-                        int nextIndex = player.MoveToNextRoom(currentRoom);
+                        int nextIndex = player.MoveToNextRoom(map);
                         if (nextIndex < finalRoom)
-                        { currentRoom = new Room($"Generated room number {nextIndex}", nextIndex, nextIndex + 1); }
+                        { map.currentRoom = map.rooms[nextIndex]; }
                         else
                         {
                             Console.WriteLine();

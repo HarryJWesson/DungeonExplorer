@@ -11,17 +11,17 @@ namespace DungeonExplorer
         //
 
         private string _description;
-        private Event _item;
-        private Event _monster;
+        public Item Item { get; set; }
+        public Creature Monster { get; private set; }
         private int _roomIndex;
         private int _nextRoom;
 
         // Constructor that generates items and monsters
-        public Room(string _description, int _roomIndex, int _nextRoom)
+        public Room(string _description, int _roomIndex, int _nextRoom, Item _item, Creature _monster)
         {
             Description = _description;
-            Item = new Event(true);
-            Monster = new Event(false);
+            Item = _item;
+            Monster = _monster;
             RoomIndex = _roomIndex;
             NextRoom = _nextRoom;
         }
@@ -53,37 +53,6 @@ namespace DungeonExplorer
             set
             {
                 _nextRoom = value;
-            }
-        }
-
-        // getter setter for generating the item in each room
-        public Event Item
-        {
-            get { return _item; }
-            set
-            {
-                _item = value;
-            }
-        }
-
-        // getter setter for generating a monster in the 3 room
-        public Event Monster
-        {
-            get 
-            {
-                return _monster;
-            }
-            set
-            {
-                // the first room is index 0 so room index 2 is room 3
-                if (this.RoomIndex / 2 == 0)
-                {
-                    _monster = new Event(true);
-                }
-                else
-                {
-                    _monster = new Event(false);
-                }
             }
         }
 

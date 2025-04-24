@@ -8,8 +8,16 @@ namespace DungeonExplorer
 {
     class Monster : Creature, IDamageable
     {
-        public Monster() { }
+        public string Name { get; private set; }
+        public int Health { get; private set; }
+        public int AttackDamage { get; private set; }
 
+        public Monster(string name, int health, int attackDamage)
+        {
+            Name = name;
+            Health = health;
+            AttackDamage = attackDamage;
+        }
         public override void Attack()
         {
             throw new NotImplementedException();

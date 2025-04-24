@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace DungeonExplorer
 {
-    class Inventory
+    public class Inventory
     {
-        public Inventory() { }
+        static List<Item> inventory = new List<Item>();
     }
 }

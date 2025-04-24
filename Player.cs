@@ -12,7 +12,6 @@ namespace DungeonExplorer
 
         public string Name { get; private set; }
         public int Health { get; private set; }
-        private List<string> inventory = new List<string>();
 
         // Constructer for the player class
         // current properties mean all the setting is private and only settable at creation
@@ -44,9 +43,9 @@ namespace DungeonExplorer
         }
 
         // Moves to the next room by returning the nextroom's index
-        public int MoveToNextRoom(Room Room)
+        public int MoveToNextRoom(GameMap gameMap)
         {
-            return Room.NextRoom;
+            return gameMap.currentRoom.NextRoom;
         }
 
         // Method to print the health and return the inventory to be printed
