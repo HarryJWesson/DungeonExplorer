@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DungeonExplorer
 {
-    class Monster : Creature, IDamageable
+    public class Monster : Creature, IDamageable
     {
         public string Name { get; private set; }
         public int Health { get; private set; }
@@ -18,11 +18,15 @@ namespace DungeonExplorer
             Health = health;
             AttackDamage = attackDamage;
         }
-        public override void Attack()
+        public override void Attack(Creature target)
         {
-            throw new NotImplementedException();
+            target.Damage(this.AttackDamage);
         }
 
-        public void Damage() { }
+        public override void Damage(int Damage) 
+        { 
+            int tempHealth = this.Health - Damage;
+            this.Health = tempHealth;
+        }
     }
 }

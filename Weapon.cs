@@ -6,13 +6,19 @@ using System.Threading.Tasks;
 
 namespace DungeonExplorer
 {
-    class Weapon : Item
+    public class Weapon : Item
     {
-        public Weapon(string name, string description) : base(name, description)
-        {
+        public int Damage { get; set; }
 
+        public Weapon(string name, string description, int damage) : base(name, description)
+        {
+            Damage = damage;
+            itemType = "Weapon";
         }
 
-        public override void Use() { }
+        public override void Use(Player player) 
+        {
+            player.Equipped = this;
+        }
     }
 }

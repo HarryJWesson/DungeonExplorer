@@ -4,14 +4,15 @@ using System.Diagnostics.Eventing.Reader;
 
 namespace DungeonExplorer
 {
-    class Player : Creature, IDamageable
+    public class Player : Creature, IDamageable
     {
         //
         // Class that represents the player and contains methods for actions in the game
         //
 
         public string Name { get; private set; }
-        public int Health { get; private set; }
+        public int Health { get; set; }
+        public Weapon Equipped { get; set; }
 
         // Constructer for the player class
         // current properties mean all the setting is private and only settable at creation
@@ -22,24 +23,9 @@ namespace DungeonExplorer
         }
 
         // method to check if items are present and the picks them up
-        public void PickUpItem(Room room)
+        public void PickUpItem(Item item)
         {
-            if ((room.Item.Item == true) & (room.Item.Present == true))
-            {
-                this.inventory.Add(room.Item.Name);
-                room.Item.Present = false;
-            }
-            else if ((room.Monster.Item == true) & (room.Monster.Present == true))
-            {
-                this.inventory.Add(room.Monster.Name);
-                room.Monster.Present = false;
-            }
-            else
-            {
-                Console.WriteLine();
-                Console.WriteLine("No item to pick up!");
-                Console.WriteLine();
-            }
+            Inventory.inventory.Add(item);
         }
 
         // Moves to the next room by returning the nextroom's index
@@ -48,19 +34,14 @@ namespace DungeonExplorer
             return gameMap.currentRoom.NextRoom;
         }
 
-        // Method to print the health and return the inventory to be printed
-        public string InventoryContents()
+        public override void Attack(Creature target)
         {
-            Console.WriteLine();
-            Console.WriteLine($"{Name}'s health is {Health}.");
-            return string.Join(", ", inventory);
+            target.Damage(this.Equipped.Damage);
         }
 
-        public override void Attack()
+        public override void Damage(int damage) 
         {
-            throw new NotImplementedException();
+            this.Health -= damage;
         }
-
-        public void Damage() { }
     }
 }

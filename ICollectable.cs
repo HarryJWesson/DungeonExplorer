@@ -8,6 +8,6 @@ namespace DungeonExplorer
 {
     interface ICollectable
     {
-        void Collect(Room room, Player player);
+        void Collect(Player player);
     }
 }

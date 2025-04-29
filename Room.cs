@@ -12,12 +12,12 @@ namespace DungeonExplorer
 
         private string _description;
         public Item Item { get; set; }
-        public Creature Monster { get; private set; }
+        public Monster Monster { get; private set; }
         private int _roomIndex;
         private int _nextRoom;
 
         // Constructor that generates items and monsters
-        public Room(string _description, int _roomIndex, int _nextRoom, Item _item, Creature _monster)
+        public Room(string _description, int _roomIndex, int _nextRoom, Item _item, Monster _monster)
         {
             Description = _description;
             Item = _item;
@@ -56,23 +56,13 @@ namespace DungeonExplorer
             }
         }
 
-        // Method to print all the items in the room and if theres a monster in the room
+        // Method to show the description of the room
         public string GetDescription()
         {
             Console.WriteLine();
-            if ((Item.Item == true) & (Item.Present)) 
-            {
-                Console.WriteLine($"There is an item in the room! It is a {Item.Name}");
-            }
-            if (Monster.Item == false)
-            {
-                Console.WriteLine($"There is a monster in the room! It is a {Monster.Name}");
-            }
-            if ((Monster.Item == true) & (Monster.Present))
-            {
-                Console.WriteLine($"There is an additional item! It is a {Monster.Name}");
-            }
+            Console.WriteLine($"The monster in the room is a {this.Monster.Name}");
             Console.WriteLine();
+            Console.WriteLine($"There is an item in the room. It's a {this.Item.Name}");
             return Description;
         }
 
