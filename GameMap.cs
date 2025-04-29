@@ -21,7 +21,7 @@ namespace DungeonExplorer
             rooms.Add(currentRoom);
 
             Potion healingPot = new Potion("Healing Potion","A strange red liquid in a conviently small vial! It tastes of warm oranges!", 50, true);
-            Monster goblin = new Monster("Goblin", 15, 10);
+            Goblin goblin = new Goblin("Goblin", 45, 10);
             Room tempRoom = new Room("A small lab with shelves filled with vials of peculiar colours.", 1, 2, healingPot, goblin);
             rooms.Add(tempRoom);
 
@@ -35,10 +35,20 @@ namespace DungeonExplorer
             Room tempRoom2 = new Room("A collapsed room that seemed to have been an armoury!", 3, 4, claymore, ogre);
             rooms.Add(tempRoom2);
 
-            Item treasure = new Item("A huge heap of gold!", "Glimmering, shiny GOLD! Take heed of greed though: The treasure is likely to be your death, though the dragon may be no more!");
+            Item treasure = new Item("huge heap of gold!", "Glimmering, shiny GOLD! Take heed of greed though: The treasure is likely to be your death, though the dragon may be no more!");
             Monster dragon = new Monster("Dragon", 100, 30);
             Room tempRoom3 = new Room("A treasury with mountains of gold beyond price and count!", 4, 5, treasure, dragon);
             rooms.Add(tempRoom3);
+
+            Item book = new Item("book of eternal knowledge!", "The cover reads Necronom-o-nom-ocron. The binding seems familiar.");
+            Goblin biggerGoblin = new Goblin("Goblin", 50, 20);
+            Room tempRoom4 = new Room("A dungeon with a skeleton resting in the corner", 5, 6, book, biggerGoblin, "Locked");
+            rooms.Add(tempRoom4);
+
+            Item note = new Item("Old note", "The old note reads 42");
+            Ghost ghost = new Ghost("Ghost", 100, 0);
+            Room tempRoom5 = new Room("An eerie room with a talking statue", 6, 7, note, ghost, "Locked", "The statue asks for the answer to life, the universe and everything?!", "42");
+            rooms.Add(tempRoom5);
 
             Console.WriteLine();
         }

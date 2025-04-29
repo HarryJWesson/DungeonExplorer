@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Media;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Xml.Serialization;
 
 namespace DungeonExplorer
@@ -32,7 +33,7 @@ namespace DungeonExplorer
         public void Start()
         {
             bool playing = true;
-            int finalRoom = 5;
+            int finalRoom = 7;
             while (playing)
             {
                 playing = turn(finalRoom);
@@ -72,7 +73,8 @@ namespace DungeonExplorer
                     case 2:
                         // Check the player inventory and health
 
-                        Console.WriteLine($"The player health is {player.Health}");
+                        Statistics.Update();
+                        Console.WriteLine($"The player health is {player.Health}, the player level is {Statistics.level} and they have killed {Statistics.monsterKills}");
                         Console.WriteLine($"The player has {player.Equipped.Name} equipped. They deal {player.Equipped.Damage} damage!");
                         Inventory.Inspect();
                         break;
@@ -80,6 +82,13 @@ namespace DungeonExplorer
                     case 3:
                         // Pick up an Item in the room
                         map.currentRoom.Item.Collect(player);
+                        if (map.currentRoom.RoomType == "Locked" && !map.currentRoom.KeySpawned) 
+                        {
+                            Console.WriteLine("You manage to find a key!");
+                            Item key = new Item("Key", "A rusty key");
+                            key.Collect(player);
+                            map.currentRoom.KeySpawned = true;
+                        }
                         break;
 
                     case 4:
@@ -93,7 +102,7 @@ namespace DungeonExplorer
 
                         if (map.currentRoom.Monster.Health > 0) 
                         {
-                            while (map.currentRoom.Monster.Health >= 0 && player.Health >= 0)
+                            while (map.currentRoom.Monster.Health > 0 && player.Health >= 0)
                             {
                                 Console.WriteLine($"The monster's health is {map.currentRoom.Monster.Health}, Your health is {player.Health}");
                                 Console.WriteLine();
@@ -104,7 +113,7 @@ namespace DungeonExplorer
                                 switch (combatChoice) 
                                 {
                                     case "1":
-                                        map.currentRoom.Monster.Damage(player.Equipped.Damage);
+                                        player.Attack(map.currentRoom.Monster);
                                         break;
 
                                     case "2":
@@ -119,7 +128,7 @@ namespace DungeonExplorer
 
                                 if (map.currentRoom.Monster.Health > 0)
                                 {
-                                    player.Damage(map.currentRoom.Monster.AttackDamage);
+                                    map.currentRoom.Monster.Attack(player);
                                 }
 
                                 if (player.Health <= 0) 
@@ -128,14 +137,26 @@ namespace DungeonExplorer
                                     return false;
                                 }
                             }
-                            if (map.currentRoom.Monster.Health <= 0) { Console.WriteLine("Congratulations! You beat the monster!"); }
+                            if (map.currentRoom.Monster.Health <= 0) { Console.WriteLine("Congratulations! You beat the monster!"); Statistics.monsterKills++; }
+                        }
+                        else { Console.WriteLine("There's no monster here!"); }
+                        if (map.currentRoom.RoomType == "Locked" && !map.currentRoom.GhostSpawned) 
+                        { 
+                            Console.WriteLine("A ghost is also here!");
+                            map.currentRoom.Monster = new Ghost("Ghost", 15, 0);
+                            map.currentRoom.GhostSpawned = true;
                         }
                         break;
 
                     case 6:
                         // Move to the next room
-                        if (map.currentRoom.Monster.Health <= 0) 
+                        if (map.currentRoom.Question != "null") { map.currentRoom.Riddle(); }
+                        if (map.currentRoom.RoomType == "Locked")
                         {
+                            map.currentRoom.Unlock();
+                        }
+                        else if (map.currentRoom.Monster.Health <= 0)
+                        { 
                             int nextIndex = player.MoveToNextRoom(map);
                             if (nextIndex < finalRoom)
                             {
@@ -150,9 +171,9 @@ namespace DungeonExplorer
                                 Console.WriteLine("End of the Line!");
                                 Console.WriteLine();
                                 return false;
-                            } 
+                            }
                         }
-                        else {  Console.WriteLine($"You can't leave! A {map.currentRoom.Monster.Name} blocks your path!"); }
+                        else { Console.WriteLine($"You can't leave! A {map.currentRoom.Monster.Name} blocks your path!"); }
                         break;
 
                     default:

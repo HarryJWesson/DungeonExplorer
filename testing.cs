@@ -16,19 +16,21 @@ namespace DungeonExplorer
         public static void tests()
         {
             // test #1 see if room description is correct
-            Room testroom = new Room("test description", 0, 1);
+            Item testitem = new Item("TestITem","Testing");
+            Monster testmonster = new Monster("TestMonster", 100, 100);
+            Room testroom = new Room("test description", 0, 1, testitem, testmonster);
             Debug.Assert(testroom.GetDescription() == "test description", "test 1 has failed. incorrect return");
             Console.WriteLine("If this is the only message you see test number 1 has succeeded");
 
-            // test #2 to see if only room index 2 generates a monster
-            Room testroomwithamonster = new Room("test", 2, 3);
-            Debug.Assert(testroomwithamonster.Monster.Item ==  false, "test 2 has failed. no monster");
+            // test #2 to see if the item is present
+            Debug.Assert(testroom.Item.Name == "TestITem", "Test 2 has failed. Incorrect return");
             Console.WriteLine("If this is the only message you see test number 2 has succeeded");
 
-            // test #3 to see player inventory in a room with two items
-            Player testplayer = new Player("Harry", 100);
-            testplayer.PickUpItem(testroom);
-            Console.WriteLine(testplayer.InventoryContents());
+
+            // test #3 to see if the monster's health and damage is correct
+            Debug.Assert(testroom.Monster.Health == 100, "Test 3 has failed. Incorrect return");
+            Debug.Assert(testroom.Monster.AttackDamage == 100, "Test 3 has failed. Incorrect return");
+            Console.WriteLine("If this is the only message you see test number 3 has succeeded");
         }
     }
 }

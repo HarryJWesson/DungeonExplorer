@@ -9,7 +9,7 @@ namespace DungeonExplorer
     public class Monster : Creature, IDamageable
     {
         public string Name { get; private set; }
-        public int Health { get; private set; }
+        public int Health { get; set; }
         public int AttackDamage { get; private set; }
 
         public Monster(string name, int health, int attackDamage)
@@ -18,6 +18,7 @@ namespace DungeonExplorer
             Health = health;
             AttackDamage = attackDamage;
         }
+
         public override void Attack(Creature target)
         {
             target.Damage(this.AttackDamage);

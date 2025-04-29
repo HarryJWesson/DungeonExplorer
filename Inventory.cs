@@ -10,9 +10,10 @@ namespace DungeonExplorer
     public class Inventory
     {
         public static List<Item> inventory = new List<Item>();
+        public static int maxItems = 5;
 
-        public static void UseItemMenu(Player player) 
-        { 
+        public static void UseItemMenu(Player player)
+        {
             bool itemUsed = false;
             while (!itemUsed)
             {
@@ -43,7 +44,7 @@ namespace DungeonExplorer
             }
         }
 
-        public static void Inspect() 
+        public static void Inspect()
         {
             bool inspecting = true;
             try
@@ -129,6 +130,17 @@ namespace DungeonExplorer
                 }
             }
             catch { Console.WriteLine("Error occurred while inspecting inventory!"); }
+        }
+
+        public static void Drop(string itemToRemove)
+        {
+            bool itemExists = inventory.Exists(item => item.Name == itemToRemove);
+
+            if (itemExists) 
+            {
+                Item removedItem = inventory.First(item => item.Name == itemToRemove);
+                inventory.Remove(removedItem);
+            }
         }
     }
 }

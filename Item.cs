@@ -22,13 +22,17 @@ namespace DungeonExplorer
 
         public void Collect(Player player)
         {
-            if (!IsCollected)
+            if (!IsCollected && (Inventory.inventory.Count() < Inventory.maxItems))
             {
                 Console.WriteLine($"You picked up a {this.Name}!");
                 player.PickUpItem(this);
                 this.IsCollected = true;
             }
-            else { Console.WriteLine("The item has already been collected!"); }
+            else if (IsCollected)
+            {
+                Console.WriteLine("The item has already been collected!");
+            }
+            else { Console.WriteLine("You've got a full inventory!"); }
         }
 
         public virtual void Use(Player player) 

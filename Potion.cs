@@ -10,7 +10,6 @@ namespace DungeonExplorer
     {
         public int Strength { get; private set; }
         public bool Type { get; private set; }
-        public bool Used { get; private set; } = false;
 
         public Potion(string name, string description, int strength, bool type) : base(name, description)
         {
@@ -24,12 +23,12 @@ namespace DungeonExplorer
             if (Type)
             {
                 player.Health = (player.Health + this.Strength);
-                this.Used = true;
+                Inventory.Drop(this.Name);
             }
             else
             {
                 player.Equipped.Damage += this.Strength;
-                this.Used = false;
+                Inventory.Drop(this.Name);
             }
         }
     }
