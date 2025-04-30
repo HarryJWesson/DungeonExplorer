@@ -107,7 +107,6 @@ namespace DungeonExplorer
             KeySpawned = false;
             Question = question;
             Answer = answer;
-            Console.WriteLine("EGADS");
         }
 
         public void Riddle() 
